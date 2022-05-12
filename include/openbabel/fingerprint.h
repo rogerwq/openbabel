@@ -25,8 +25,6 @@ GNU General Public License for more details.
 #include <vector>
 #include <string>
 
-#include <openbabel/plugin.h>
-
 #ifndef OBFPRT
 #define OBFPRT
 #endif
@@ -36,16 +34,9 @@ namespace OpenBabel
   class OBBase; //Forward declaration; used only as pointer.
 
 /// \brief The base class for fingerprints
-class OBFPRT OBFingerprint : public OBPlugin
+class OBFPRT OBFingerprint
 {
 //see end of cpp file for detailed documentation
-
-MAKE_PLUGIN(OBFingerprint)
-
-const char* TypeID()
-	{
-		return "fingerprints";
-	}
 
 	//Rest of OBFingerprints declarations
 public:
