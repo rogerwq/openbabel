@@ -2,6 +2,7 @@
 fingerprint.h - Base class for fingerprints and fast searching
 
 Copyright (C) 2005 by Chris Morley
+Copyright (C) 2022 by Qin Wan
 
 This file is part of the Open Babel project.
 For more information, see <http://openbabel.org/>
@@ -25,6 +26,8 @@ GNU General Public License for more details.
 #include <vector>
 #include <string>
 
+// #include <openbabel/plugin.h>
+
 #ifndef OBFPRT
 #define OBFPRT
 #endif
@@ -34,9 +37,17 @@ namespace OpenBabel
   class OBBase; //Forward declaration; used only as pointer.
 
 /// \brief The base class for fingerprints
+// class OBFPRT OBFingerprint : public OBPlugin
 class OBFPRT OBFingerprint
 {
 //see end of cpp file for detailed documentation
+
+// MAKE_PLUGIN(OBFingerprint)
+
+// const char* TypeID()
+// 	{
+// 		return "fingerprints";
+// 	}
 
 	//Rest of OBFingerprints declarations
 public:
@@ -114,10 +125,10 @@ private:
   };
 
 
-public:
-/// \return a pointer to a fingerprint (the default if ID is empty), or NULL if not available
-  ///For backward compatibility;  a synonym of OBFingerprint::FindType
-static OBFingerprint* FindFingerprint(const char* ID){ return FindType(ID);}
+// public:
+// /// \return a pointer to a fingerprint (the default if ID is empty), or NULL if not available
+//   ///For backward compatibility;  a synonym of OBFingerprint::FindType
+// static OBFingerprint* FindFingerprint(const char* ID){ return FindType(ID);}
 
 private:
   static const unsigned int bitsperint;// = 8 * sizeof(unsigned int);
@@ -182,7 +193,7 @@ public:
     int nCandidates=0);
 
   /// \return a pointer to the fingerprint type used to constuct the index
-  OBFingerprint* GetFingerprint() const{ return _pFP;};
+  // OBFingerprint* GetFingerprint() const{ return _pFP;};
 
   /// \return a pointer to the index header containing size info etc.
   const FptIndexHeader& GetIndexHeader() const{ return _index.header;};

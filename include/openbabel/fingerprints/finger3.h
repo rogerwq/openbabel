@@ -1,6 +1,8 @@
 /**********************************************************************
-finger3.cpp: Fingerprints based on list of SMARTS patterns
+finger3.h: Fingerprints based on list of SMARTS patterns
+
 Copyright (C) 2005 Chris Morley
+Copyright (C) 2022 Qin Wan
 
 This file is part of the Open Babel project.
 For more information, see <http://openbabel.org/>
@@ -14,6 +16,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ***********************************************************************/
+
 
 #include <openbabel/babelconfig.h>
 #include <openbabel/mol.h>
@@ -50,8 +53,9 @@ protected:
   string _patternsfile;
 
 public:
-  PatternFP(const char* ID, const char* filename=nullptr,
-      bool IsDefault=false) : OBFingerprint(ID, IsDefault)
+//   PatternFP(const char* ID, const char* filename=nullptr,
+//       bool IsDefault=false) : OBFingerprint(ID, IsDefault)
+  PatternFP(const char* filename=nullptr): OBFingerprint()
   {
     if (filename == nullptr)
       _patternsfile="patterns.txt";
@@ -84,10 +88,10 @@ public:
   virtual unsigned int Flags() { return FPT_UNIQUEBITS;};
 
 ///////////////////////////////////////////////////////////////////////////////
-  virtual PatternFP* MakeInstance(const std::vector<std::string>& textlines)
-  {
-    return new PatternFP(textlines[1].c_str(),textlines[2].c_str());
-  }
+//   virtual PatternFP* MakeInstance(const std::vector<std::string>& textlines)
+//   {
+//     return new PatternFP(textlines[1].c_str(),textlines[2].c_str());
+//   }
 
 ////////////////////////////////////////////////////////////////////////////////
   virtual bool GetFingerprint(OBBase* pOb, vector<unsigned int>&fp, int foldbits)
@@ -307,8 +311,8 @@ public:
 
 //***********************************************
 //Make a global instance
-PatternFP FP3PatternFP("FP3");
-PatternFP FP4PatternFP("FP4", "SMARTS_InteLigand.txt");
+// PatternFP FP3PatternFP("FP3");
+// PatternFP FP4PatternFP("FP4", "SMARTS_InteLigand.txt");
 //***********************************************
 
 /*! \class PatternFP

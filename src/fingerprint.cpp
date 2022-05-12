@@ -30,10 +30,10 @@ GNU General Public License for more details.
 using namespace std;
 namespace OpenBabel
 {
-#if defined(__CYGWIN__) || defined(__MINGW32__)
-  // macro to implement static OBPlugin::PluginMapType& Map()
-  PLUGIN_CPP_FILE(OBFingerprint)
-#endif
+// #if defined(__CYGWIN__) || defined(__MINGW32__)
+//   // macro to implement static OBPlugin::PluginMapType& Map()
+//   PLUGIN_CPP_FILE(OBFingerprint)
+// #endif
 
   const unsigned int OBFingerprint::bitsperint = 8 * sizeof(unsigned int);
 
@@ -373,16 +373,19 @@ namespace OpenBabel
   //////////////////////////////////////////////////////////
   OBFingerprint* FptIndex::CheckFP()
   {
-    //check that fingerprint type is available
-    OBFingerprint* pFP = OBFingerprint::FindFingerprint(header.fpid);
-    if(!pFP)
-      {
-        stringstream errorMsg;
-        errorMsg << "Index has Fingerprints of type '" << header.fpid
-                 << " which is not currently loaded." << endl;
-        obErrorLog.ThrowError(__FUNCTION__, errorMsg.str(), obError);
-      }
-    return pFP; //NULL if not available
+    // //check that fingerprint type is available
+    // OBFingerprint* pFP = OBFingerprint::FindFingerprint(header.fpid);
+    // if(!pFP)
+    //   {
+    //     stringstream errorMsg;
+    //     errorMsg << "Index has Fingerprints of type '" << header.fpid
+    //              << " which is not currently loaded." << endl;
+    //     obErrorLog.ThrowError(__FUNCTION__, errorMsg.str(), obError);
+    //   }
+    // return pFP; //NULL if not available
+
+    // TODO
+    return nullptr;
   }
 
   //*******************************************************
@@ -405,8 +408,9 @@ namespace OpenBabel
 
     //check that fingerprint type is available
     _pFP = _pindex->CheckFP();
-    if(fpid.empty()) // add id of default FP
-      strcpy(_pindex->header.fpid, _pFP->GetID());
+    // if(fpid.empty()) // add id of default FP
+    //   strcpy(_pindex->header.fpid, _pFP->GetID());
+    // TODO: deal with fpid.empty()
 
     //Save a small amount of time by not generating info (FP2 currently)
     _pFP->SetFlags(_pFP->Flags() | OBFingerprint::FPT_NOINFO);

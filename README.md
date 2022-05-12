@@ -1,3 +1,5 @@
+!!! Modified for Multithreading and Rust ffi
+
 Open Babel
 ----------
 
